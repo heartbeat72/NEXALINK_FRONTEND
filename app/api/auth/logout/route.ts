@@ -1,14 +1,12 @@
-import { NextResponse } from "next/server"
-
 export async function POST() {
   try {
-    // Create response
+    // Clear client-side state (optional depending on your frontend setup)
+    // E.g., remove token from localStorage or use a context to reset auth state
+
     const response = NextResponse.json({ success: true })
 
-    // Clear auth cookie
+    // Remove cookies (if set)
     response.headers.set("Set-Cookie", "auth-token=; HttpOnly; Path=/; Max-Age=0; SameSite=Strict")
-
-    // Clear remember me cookie
     response.headers.append("Set-Cookie", "remember_me=; Path=/; Max-Age=0; SameSite=Lax")
 
     return response
